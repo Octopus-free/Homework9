@@ -36,7 +36,7 @@ def row_generator():
         position_in_card_row = sample(card_row, 1)[0]
         while position_in_card_row == ' ':
             position_in_card_row = sample(card_row, 1)[0]
-        card_row[card_row.index(position_in_card_row)] = ' '
+        card_row[card_row.index(position_in_card_row)] = '  '
 
     sorted_row = ' '
     for element in card_row:
