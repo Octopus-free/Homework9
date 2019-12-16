@@ -1,6 +1,5 @@
-test_list = []
+from Loto import print_card
 
-for i in range(0, 11):
-    test_list.append(i)
+print_card()
 
-print(test_list[0:10])
+
