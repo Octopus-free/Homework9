@@ -1,11 +1,10 @@
-test_string = ' 16 18'
-test_number = 16
+from re import search, findall
 
-test_string.find(f' 18')
 
-if f' {test_number} ' in test_string:
-    print(f' {str(test_number)}')
-    print('Число есть')
+test_string = 'asd  +-+'
+test_number = 6
+
+if len(findall(r'[\d]', test_string)) == 0:
+    print('цифры нет')
 else:
-    print('Числа нет')
-    print(f' {str(test_number)}')
+    print('цифры есть')
