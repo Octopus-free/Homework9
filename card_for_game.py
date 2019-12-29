@@ -23,7 +23,7 @@ class HandfulGame:
         barrel = sample(self.sack_for_game, 1)[0]
         while barrel == ' ' or barrel == 0:
             barrel = sample(self.sack_for_game, 1)[0]
-            self.sack_for_game[self.sack_for_game(barrel)] = ' '
+        self.sack_for_game[self.sack_for_game.index(barrel)] = ' '
         return barrel
 
 
@@ -83,6 +83,8 @@ def under_line(func):
 
 @under_line
 def print_card():
-    my_card = CardGeneration()
-    print(my_card.create_card())
+    return CardGeneration().create_card()
 
+
+if __name__ == '__main__':
+    print_card()
