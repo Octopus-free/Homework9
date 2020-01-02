@@ -33,7 +33,7 @@ class PlayersCondition:
         # создаем пустой лист для дальнейшего хранения кол-ва игроков
         players_list = []
         human_count = int(input('Сколько людей будет играть? '))
-        computers_count = int(input('Сколько компьютеров будет играть?'))
+        computers_count = int(input('Сколько компьютеров будет играть? '))
         # добавляем в лист запрошенное в терминале кол-во игроков
         players_list.append(human_count)
         players_list.append(computers_count)

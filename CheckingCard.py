@@ -3,31 +3,59 @@ from re import findall
 
 class CheckingCard:
 
-    def check_human_players(self, players_count):
-        players_count += 1
-        for element in range(1, players_count):
-            if len(findall(r'[\d]', element)) == 0:
-                print(f'Игрок {element} победил!')
+    def check_human_players(self, human_players_cards):
 
-    def check_computer_players(self, players_count):
-        players_count += 1
-        for element in range(1, players_count):
-            if len(findall(r'[\d]', element)) == 0:
-                print(f'Компьютер {element} победил!')
+        for human_card in human_players_cards:
+            if len(findall(r'[\d]', human_card)) == 0:
+                human_winner = human_players_cards.index(human_card)
+                print(f'Игрок {human_winner} победил!')
 
-    def strike_numbers(self, barrel_number, players_cards):
+    def check_computer_players(self, computers_players_cards):
+
+        for computer_card in computers_players_cards:
+            if len(findall(r'[\d]', computer_card)) == 0:
+                computer_winner = computers_players_cards.index(computer_card)
+                print(f'Компьютер {computer_winner} победил!')
+
+    def strike_numbers_answer_yes(self, player_number, barrel_number, player_card):
 
         if barrel_number < 10:
-            for card in players_cards:
-                if ' {} '.format(barrel_number) in players_cards[card]:
-                    players_cards[card] = players_cards[card].replace(' {} '.format(barrel_number), ' - ')
-                else:
-                    print('Вы проиграли, выпавшего бочонка нет на вашей карточке!')
-                    exit(0)
+            if ' {} '.format(barrel_number) in player_card:
+                player_card = player_card.replace(' {} '.format(barrel_number), ' - ')
+            else:
+                print(f'Игрок {player_number} проиграл, выпавшего бочонка нет на вашей карточке!')
+                exit(0)
         else:
-            for card in players_cards:
-                if f' {barrel_number}' in players_cards:
-                    players_cards[card] = players_cards[card].replace(str(barrel_number), '--')
-                else:
-                    print('Вы проиграли, выпавшего бочонка нет на вашей карточке!')
-                    exit(0)
+            if f' {barrel_number}' in player_card:
+                player_card = player_card.replace(str(barrel_number), '--')
+            else:
+                print(f'Игрок {player_number} проиграл, выпавшего бочонка нет на вашей карточке!')
+                exit(0)
+        return player_card
+
+    def strike_numbers_answer_no(self, player_number, barrel_number, player_card):
+
+        if barrel_number < 10:
+            if ' {} '.format(barrel_number) in player_card:
+                print(f'Игрок {player_number} проиграл, необходимо было зачеркнуть число, выпавшее на бочонке!')
+                exit(0)
+        else:
+            if f' {barrel_number}' in player_card:
+                print(f'Игрок {player_number} проиграл, необходимо было зачеркнуть число, выпавшее на бочонке!')
+                exit(0)
+
+    def strike_numbers_for_computers(self, barrel_number, computers_players_cards):
+
+        cards_list = []
+
+        if barrel_number < 10:
+            for card in computers_players_cards:
+                if ' {} '.format(barrel_number) in card:
+                   card = card.replace(' {} '.format(barrel_number), ' - ')
+                   cards_list.append(card)
+        else:
+            for card in computers_players_cards:
+                if f' {barrel_number}' in card:
+                    card = card.replace(str(barrel_number), '--')
+                    cards_list.append(card)
+        return cards_list
