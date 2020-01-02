@@ -83,7 +83,9 @@ def under_line(func):
 
 @under_line
 def print_card():
-    return CardGeneration().create_card()
+    init_class_card = CardGeneration()
+    card = init_class_card.create_card()
+    return card
 
 
 if __name__ == '__main__':

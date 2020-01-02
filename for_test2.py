@@ -1,6 +1,6 @@
-from card_for_game import CardGeneration, HandfulGeneration
-from game_turn import NextTurn
-from card_for_game import HandfulGame
+from CardAndHandful import CardGeneration, HandfulGeneration
+from GameTurns import NextTurn
+from CardAndHandful import HandfulGame
 from re import findall
 
 from random import sample
@@ -24,7 +24,7 @@ computer_card_for_game = CardGeneration()
 player_card = player_card_for_game.create_card()
 computer_card = computer_card_for_game.create_card()
 
-for i in HandfulGeneration().create(): #range(1, 4):
+for i in range(1, 91):
     if len(findall(r'[\d]', player_card)) == 0:
         print('Вы победили')
         exit(0)
@@ -33,7 +33,7 @@ for i in HandfulGeneration().create(): #range(1, 4):
         print('Компьютер победил')
         exit(0)
 
-    print(NextTurn().turn(i))
+    print(NextTurn().turn_step(i))
     current_barrel = barrel_for_game.handful_using()
     print(f'Выпал бочонок {current_barrel}')
 
